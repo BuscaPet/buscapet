@@ -1,0 +1,77 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Perdeu seu pet?</title>
+	<link rel="stylesheet" href="themes/buscatema.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>	
+
+        <div data-role="navbar">
+            <ul>
+                <li><a href="index.html" data-icon="home">Home</a></li>
+                <li><a href="#" data-icon="edit" class="ui-btn-active">Cadastro</a></li>
+                <li><a href="#" data-icon="arrow-r">Enviar</a></li>
+            </ul>
+        </div><!-- /navbar -->
+
+
+
+<p>
+<label for="text-basic">Nome do pet:</label>
+<input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
+
+<fieldset data-role="controlgroup">
+    <legend>Especie do pet:</legend>
+        <input name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" type="radio">
+        <label for="radio-choice-1">Cachorro</label>
+        <input name="radio-choice-1" id="radio-choice-2" value="choice-2" type="radio">
+        <label for="radio-choice-2">Gato</label>
+</fieldset>
+
+<label for="text-basic">Raça do pet:</label>
+<input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
+
+<form>
+<div class="ui-field-contain">
+    <label for="select-native-2">Selecione a cor:</label>
+    <select name="select-native-2" id="select-native-2" data-mini="true">
+        <option value="1">Preto</option>
+        <option value="2">Branco</option>
+        <option value="3">Marrom</option>
+        <option value="4">Outros</option>
+    </select>
+</div>
+</form>
+
+<label for="text-basic">Nome do dono:</label>
+<input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
+
+<label for="tel">Telefone:</label>
+<input data-clear-btn="true" name="tel" id="tel" value="" type="tel">
+
+<form>
+    <label for="email-2">Email:</label>
+    <input data-clear-btn="true" name="email-2" id="email-2" value="" type="email">
+</form>
+
+<form>
+    <label for="textarea-1">Descrição:</label>
+    <textarea name="textarea-1" id="textarea-1"></textarea>
+</form>
+
+<form>
+     <label for="file-2">Imagem do pet:</label>
+     <input data-clear-btn="true" name="file-2" id="file-2" value="" type="file">
+</form>
+
+<a href="index.html" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-bottom">ENVIAR</a>
+
+	
+	
+</body>
+</html>
