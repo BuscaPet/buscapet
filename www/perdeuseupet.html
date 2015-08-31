@@ -22,8 +22,11 @@
 
 
 <p>
+<form method="post" action="http//buscapetemail.pe.hu/email.php" >
+
+
 <label for="text-basic">Nome do pet:</label>
-<input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
+<input data-clear-btn="true" name="nomedopet" id="nomedopet" value="" type="text">
 
 <fieldset data-role="controlgroup">
     <legend>Especie do pet:</legend>
@@ -34,9 +37,8 @@
 </fieldset>
 
 <label for="text-basic">Raça do pet:</label>
-<input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
+<input data-clear-btn="true" name="racadopet" id="racadopet" value="" type="text">
 
-<form>
 <div class="ui-field-contain">
     <label for="select-native-2">Selecione a cor:</label>
     <select name="select-native-2" id="select-native-2" data-mini="true">
@@ -46,32 +48,26 @@
         <option value="4">Outros</option>
     </select>
 </div>
-</form>
 
 <label for="text-basic">Nome do dono:</label>
-<input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
+<input data-clear-btn="true" name="nomedodono" id="nomedodono" value="" type="text">
 
 <label for="tel">Telefone:</label>
 <input data-clear-btn="true" name="tel" id="tel" value="" type="tel">
 
-<form>
     <label for="email-2">Email:</label>
-    <input data-clear-btn="true" name="email-2" id="email-2" value="" type="email">
-</form>
+    <input data-clear-btn="true" name="email2" id="email2" value="" type="email">
 
-<form>
     <label for="textarea-1">Descrição:</label>
     <textarea name="textarea-1" id="textarea-1"></textarea>
-</form>
 
-<form>
      <label for="file-2">Imagem do pet:</label>
-     <input data-clear-btn="true" name="file-2" id="file-2" value="" type="file">
-</form>
+     <input data-clear-btn="true" name="file2" id="file2" value="" type="file">
 
 <a href="index.html" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-bottom">ENVIAR</a>
+<input type="submit"  value="Envie sua mensagem" name="submit" >
 
-	
+	</form>
 	
 </body>
 </html>
