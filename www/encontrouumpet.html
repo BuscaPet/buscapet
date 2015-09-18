@@ -20,6 +20,9 @@
         </div><!-- /navbar -->
 
 <p>
+
+<form method="post" action="http://buscapetemail.pe.hu/email.php">
+
 <fieldset data-role="controlgroup">
     <legend>Especie do pet:</legend>
         <input name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" type="radio">
@@ -31,7 +34,7 @@
 <label for="text-basic">Raça do pet:</label>
 <input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
 
-<form>
+
 <div class="ui-field-contain">
     <label for="select-native-2">Selecione a cor:</label>
     <select name="select-native-2" id="select-native-2" data-mini="true">
@@ -41,7 +44,7 @@
         <option value="4">Outros</option>
     </select>
 </div>
-</form>
+
 
 <label for="text-basic">Nome do usuário:</label>
 <input data-clear-btn="true" name="text-basic" id="text-basic" value="" type="text">
@@ -49,24 +52,32 @@
 <label for="tel">Telefone:</label>
 <input data-clear-btn="true" name="tel" id="tel" value="" type="tel">
 
-<form>
+
     <label for="email-2">Email:</label>
     <input data-clear-btn="true" name="email-2" id="email-2" value="" type="email">
-</form>
 
-<form>
+
+
     <label for="textarea-1">Descrição:</label>
     <textarea name="textarea-1" id="textarea-1"></textarea>
-</form>
 
-<form>
+
+
      <label for="file-2">Imagem do pet:</label>
      <input data-clear-btn="true" name="file-2" id="file-2" value="" type="file">
-</form>
 
-<a href="index.html" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-bottom">ENVIAR</a>
 
-	
+	<center> <a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-bottom">Localização</a>
+<div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="a" data-corners="false" data-tolerance="15,15">
+    <a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    <iframe src="map.html" seamless="" height="320" width="480"></iframe>
+</div> </center>
+
+
+
+<input type="submit"  value="ENVIAR DADOS" name="submit" >
+
+</form>	
 	
 </body>
 </html>

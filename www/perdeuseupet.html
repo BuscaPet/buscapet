@@ -22,7 +22,7 @@
 
 
 <p>
-<form method="post" action="http//buscapetemail.pe.hu/email.php" >
+<form method="post" action="http://buscapetemail.pe.hu/email.php">
 
 
 <label for="text-basic">Nome do pet:</label>
@@ -30,9 +30,9 @@
 
 <fieldset data-role="controlgroup">
     <legend>Especie do pet:</legend>
-        <input name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" type="radio">
+        <input name="radio-choice-1" id="radio-choice-1" value="Cachorro" checked="checked" type="radio">
         <label for="radio-choice-1">Cachorro</label>
-        <input name="radio-choice-1" id="radio-choice-2" value="choice-2" type="radio">
+        <input name="radio-choice-1" id="radio-choice-2" value="Gato" type="radio">
         <label for="radio-choice-2">Gato</label>
 </fieldset>
 
@@ -42,10 +42,10 @@
 <div class="ui-field-contain">
     <label for="select-native-2">Selecione a cor:</label>
     <select name="select-native-2" id="select-native-2" data-mini="true">
-        <option value="1">Preto</option>
-        <option value="2">Branco</option>
-        <option value="3">Marrom</option>
-        <option value="4">Outros</option>
+        <option value="Preto">Preto</option>
+        <option value="Branco">Branco</option>
+        <option value="Marrom">Marrom</option>
+        <option value="Outros">Outros</option>
     </select>
 </div>
 
@@ -63,9 +63,17 @@
 
      <label for="file-2">Imagem do pet:</label>
      <input data-clear-btn="true" name="file2" id="file2" value="" type="file">
+	 
+	<center> <a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-bottom">Localização</a>
+<div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="a" data-corners="false" data-tolerance="15,15">
+    <a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    <iframe src="map.html" seamless="" height="320" width="480"></iframe>
+</div> <center>
 
-<a href="index.html" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-bottom">ENVIAR</a>
-<input type="submit"  value="Envie sua mensagem" name="submit" >
+	 
+
+<p>
+<input type="submit"  value="ENVIAR DADOS" name="submit" >
 
 	</form>
 	
