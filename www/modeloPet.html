@@ -1,0 +1,64 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>modeloPet</title>
+	<link rel="stylesheet" href="themes/buscatema.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+	
+</head>
+<body>
+
+
+<div data-role="page" id="foo">
+  <div data-role="header">
+  <a onclick="goBack()" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Voltar</a>
+  <script>
+function goBack() {
+    window.history.back();
+}
+</script>
+    <h1>Pet Modelo</h1>
+	</div>
+	<p>	
+
+ <center>
+<img src="images/dog7.jpg" alt="Smiley face" height="150" width="150"> 
+<br>
+<h2>Nome do Pet</h2>
+<br>
+Especie: Cachorro
+<p>
+Cor: Marrom
+<p>
+Nome do dono: Caio
+<p>
+Telefone: 061 90879060
+<p>
+email: caio@teste.com
+<p>
+Descrição: Pet encontra-se com colera azul e é bastante docio. 
+<p>
+
+<div id="googleMap" style="width:300px;height:200px;"></div>
+
+	
+	
+</body>
+</html>	
+	
