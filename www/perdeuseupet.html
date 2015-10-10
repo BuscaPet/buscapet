@@ -1,81 +1,88 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Perdeu seu pet?</title>
-	<link rel="stylesheet" href="themes/buscatema.min.css" />
-	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <title>Perdeu seu pet?</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body>	
+<body>
 
-        <div data-role="navbar">
-            <ul>
-                <li><a href="index.html" data-icon="home">Home</a></li>
-                <li><a href="#" data-icon="edit" class="ui-btn-active">Cadastro</a></li>
-                <li><a href="#" data-icon="arrow-r">Enviar</a></li>
-            </ul>
-        </div><!-- /navbar -->
+<ul class="nav nav-pills">
+  <li><a href="index.html">Home</a></li>
+  <li class="active"><a href="#">Editar</a></li>
+  <li><a href="#">Enviar</a></li>
+</ul>
 
+<br>
 
+ <form role="form" method="post" action="http://buscapetemail.pe.hu/email.php">
+  <div class="form-group">
+    <label for="usr">Nome do pet:</label>
+    <input type="text" class="form-control" id="nomedopet">
 
-<p>
-<form method="post" action="http://buscapetemail.pe.hu/email.php">
+<br>
+  
+	<label for="especie">Especie do pet:</label>
+		<select class="form-control">
+		<option>Cachorro</option>
+		<option>Gato</option>
+		</select>
+  
+<br>
 
+    <label for="raca">Raça do pet:</label>
+    <input type="text" class="form-control" id="raca">
 
-<label for="text-basic">Nome do pet:</label>
-<input data-clear-btn="true" name="nomedopet" id="nomedopet" value="" type="text">
-
-<fieldset data-role="controlgroup">
-    <legend>Especie do pet:</legend>
-        <input name="radio-choice-1" id="radio-choice-1" value="Cachorro" checked="checked" type="radio">
-        <label for="radio-choice-1">Cachorro</label>
-        <input name="radio-choice-1" id="radio-choice-2" value="Gato" type="radio">
-        <label for="radio-choice-2">Gato</label>
-</fieldset>
-
-<label for="text-basic">Raça do pet:</label>
-<input data-clear-btn="true" name="racadopet" id="racadopet" value="" type="text">
-
-<div class="ui-field-contain">
-    <label for="select-native-2">Selecione a cor:</label>
-    <select name="select-native-2" id="select-native-2" data-mini="true">
-        <option value="Preto">Preto</option>
-        <option value="Branco">Branco</option>
-        <option value="Marrom">Marrom</option>
-        <option value="Outros">Outros</option>
-    </select>
-</div>
-
-<label for="text-basic">Nome do dono:</label>
-<input data-clear-btn="true" name="nomedodono" id="nomedodono" value="" type="text">
-
-<label for="tel">Telefone:</label>
-<input data-clear-btn="true" name="tel" id="tel" value="" type="tel">
-
-    <label for="email-2">Email:</label>
-    <input data-clear-btn="true" name="email2" id="email2" value="" type="email">
-
-    <label for="textarea-1">Descrição:</label>
-    <textarea name="textarea-1" id="textarea-1"></textarea>
-
-     <label for="file-2">Imagem do pet:</label>
-     <input data-clear-btn="true" name="file2" id="file2" value="" type="file">
-	 
-	<center> <a href="#popupMap" data-rel="popup" data-position-to="window" class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-bottom">Localização</a>
-<div data-role="popup" id="popupMap" data-overlay-theme="a" data-theme="a" data-corners="false" data-tolerance="15,15">
-    <a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-    <iframe src="map.html" seamless="" height="320" width="480"></iframe>
-</div> <center>
-
-	 
-
-<p>
-<input type="submit"  value="ENVIAR DADOS" name="submit" >
-
-	</form>
+<br>
 	
+	<label for="cor">Selecione a cor:</label>
+		<select class="form-control">
+		<option>Preto</option>
+		<option>Branco</option>
+		<option>Marrom</option>
+		<option>Outros "Descrição"</option>
+		</select>  
+  
+<br>
+
+    <label for="dono">Nome do dono:</label>
+    <input type="text" class="form-control" id="nomedodono">
+
+<br>
+
+    <label for="tel">Telefone:</label>
+    <input type="tel" class="form-control" id="telefone">
+
+<br>  
+
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email">
+
+<br>
+
+  <label for="comment">Descrição:</label>
+  <textarea class="form-control" rows="4" id="comment"></textarea>  
+  
+ <br>
+ 
+     <label for="imagem">Imagem do pet:</label>
+    <input type="file" id="imagem">
+	
+<br>
+  
+<center><img src="img/map.png" alt="Smiley face" height="50" width="70">
+<p>
+<a class="btn btn-default" href="#" role="button">Localização</a></center>
+ 
+<button type="submit" class="btn btn-primary btn-lg btn-block">ENVIAR DADOS</button>
+ 
+  </div>
+</form>
+
+
+
 </body>
 </html>
