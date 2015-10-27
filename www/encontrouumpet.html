@@ -18,11 +18,11 @@
 
 <br>
 
- <form role="form" method="post" action="http://buscapetemail.pe.hu/email.php">
+ <form role="form" method="post" action="http://buscapetemail.pe.hu/emailencontrados.php">
   <div class="form-group">
  
 	<label for="especie">Especie do pet:</label>
-		<select class="form-control">
+		<select class="form-control" name="especie" id="especie">
 		<option>Cachorro</option>
 		<option>Gato</option>
 		</select>
@@ -30,12 +30,12 @@
 <br>
 
     <label for="raca">Raça do pet:</label>
-    <input type="text" class="form-control" id="raca">
+    <input type="text" class="form-control" id="raca" name="raca">
 
 <br>
 	
 	<label for="cor">Selecione a cor:</label>
-		<select class="form-control">
+		<select class="form-control" name="cor" id="cor">
 		<option>Preto</option>
 		<option>Branco</option>
 		<option>Marrom</option>
@@ -50,22 +50,22 @@
 <br>
 
     <label for="tel">Telefone:</label>
-    <input type="tel" class="form-control" id="telefone">
+    <input type="tel" class="form-control" id="telefone" name="telefone">
 
 <br>  
 
     <label for="email">Email:</label>
-    <input type="email" class="form-control" id="email">
+    <input type="email" class="form-control" id="email" name="email">
 
 <br>
 
   <label for="comment">Descrição:</label>
-  <textarea class="form-control" rows="4" id="comment"></textarea>  
+  <textarea class="form-control" rows="4" id="comment" name="comment"></textarea>  
   
  <br>
  
      <label for="imagem">Imagem do pet:</label>
-    <input type="file" id="imagem">
+    <input type="file" id="imagem" name="imagem">
 	
 <br>
   

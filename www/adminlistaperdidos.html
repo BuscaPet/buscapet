@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Busca Pet</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+    		<script type="text/javascript">
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+
+		function onDeviceReady() {
+			var database = window.openDatabase("Perdidos", "1.0", "BuscaPet BD", 20000);
+			database.transaction(populateDB, errorDB, successDB);
+		}
+		
+		function populateDB (tx){
+			tx.executeSql("SELECT * FROM Perdidos");
+		}
+		
+		function errorDB (error){
+			navigator.notification.alert(error, null, "Got an error", "OK");
+		}
+		
+		function successDB (){
+			navigator.notification.alert("BD carregado com sucesso", null, "Alerta", "OK");
+		}
+		
+	
+		
+		
+		</script>
+		
+		
+		
+</head>
+<body>
+
+
+<input type="submit" value="Enviar" id="btnSubmbit" onclick="return populateDB()">
+
+<input type="submit" class="btn btn-primary btn-lg btn-block" value="Visualizar" onclick="return listarPerdidos()">
+
+</body>
+</html>
