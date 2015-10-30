@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+function submit() 
+{
+    var nomedopet = document.getElementById('nomedopet').value;
+	var especie = document.getElementById('especie').value;
+	var raca = document.getElementById('raca').value;
+	var cor = document.getElementById('cor').value;
+	var cor = document.getElementById('nomedodono').value;
+	var telefone = document.getElementById('telefone').value;
+	var email = document.getElementById('email').value;
+	var descricao = document.getElementById('descricao').value;
+    var msg;
+    var time_stamp = new Date();
+
+    db.transaction(function (tx) 
+    {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS Teste2 (id auto_increment, date_time varchar(128), nomedopet varchar(64), especie varchar(64), raca varchar(64), cor varchar(64), nomedodono varchar(64), telefone varchar(64), email varchar(64), descricao varchar(64))');
+        tx.executeSql('INSERT INTO Teste2 (id, nomedopet, especie, raca, cor, nomedodono, telefone, email, descricao) VALUES (1, ?, ?, ?, ?, ?, ?, ?)', [nomedopet,especie,raca,cor, nomedodono, telefone,email,descricao]);// <--Problem here!
+        msg = '<p>Log message created and row inserted.</p>';
+        document.querySelector('#status').innerHTML = msg;
+    });
+
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM Teste2', [], function (tx, results) {
+                var len = results.rows.length, i;
+                msg = "<p>Found rows: " + len + "</p>";
+                document.querySelector('#status').innerHTML += msg;
+                for (i = 0; i < len; i++) {
+                    msg = "<p><b>nomedopet:" + results.rows.item(i).nomedopet + "</b></p>";
+
+                    document.querySelector('#status').innerHTML += msg;
+                }
+            }, null);
+        });
+}
+</script>
+</head>
+<body>
+<div id="status" name="status">Status Message</div>
+<p>Nome do pet: <input type="text" id="nomedopet" name="nomedopet" /><br/></p>
+<p>Especie: <input type="text" id="especie" name="especie" /><br/></p>
+<p>Raça do pet: <input type="text" id="raca" name="raca" /><br/></p>
+<p>Cor: <input type="text" id="cor" name="cor" /><br/></p>
+<p>Nome do dono: <input type="text" id="nomedodono" name="nomedodono" /><br/></p>
+<p>Telefone: <input type="text" id="telefone" name="telefone" /><br/></p>
+<p>Email: <input type="text" id="email" name="email" /><br/></p>
+<p>Descrição: <input type="text" id="descricao" name="descricao" /><br/></p>
+<p><button onclick="submit()" type="button">Submit Data</button></p> <!--Should print data from the table-->
+		<a href="lista.html">Lista</a>
+</body>
+</html>

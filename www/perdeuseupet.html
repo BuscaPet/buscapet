@@ -14,8 +14,8 @@
 
 <ul class="nav nav-pills">
   <li><a href="index.html">Home</a></li>
-  <li class="active"><a href="#">Editar</a></li>
-  <li><a href="#">Enviar</a></li>
+  <li class="active"><a href="#">Perdido</a></li>
+  <li><a href="encontrouumpet.html">Encontrado</a></li>
 </ul>
 
 <br>
@@ -76,12 +76,29 @@
 	
 <br>
   
+
+  
 <center><img src="img/map.png" alt="Smiley face" height="50" width="70">
 <p>
-<a class="btn btn-default" href="#" role="button">Localização</a></center>
- 
 
-<input name="submit" type="submit" class="btn btn-primary btn-lg btn-block" id="submit" value="ENVIAR DADOS" onclick = "return showMessage()" />
+<label for="imagem">Localização:</label><p>
+    
+	<button  class="btn btn-primary btn-success" onclick="preencher()" type="button"> Preencher com localização Atual</button></center>
+<br>
+    <label>Rua:</label>
+    <input type="text" class="form-control" id="rua" name="rua">
+<br>    
+	<label>Número:</label>
+    <input type="text" class="form-control" id="numero" name="numero">
+<br> 	
+	<label>Cidade:</label>
+    <input type="text" class="form-control" id="cidade" name="cidade">
+<br> 
+    <label>CEP:</label>
+    <input type="text" class="form-control" id="cep" name="cep">
+    
+<br>
+<button type="submit" class="btn btn-block btn-lg btn-primary" onclick = "return showMessage()">ENVIAR DADOS  <span class="glyphicon glyphicon-send"></span></button>
 
 <script type = "text/javascript">
 function showMessage() {
@@ -92,6 +109,29 @@ return true;
  
   </div>
 </form>
+
+<script>
+function preencher() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(posicao) {
+      var url = "http://nominatim.openstreetmap.org/reverse?lat="+posicao.coords.latitude+"&lon="+posicao.coords.longitude+"&format=json&json_callback=preencherDados";
+      
+      var script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+    });
+  } else {
+    alert('seu navegador não suporta geolocation');
+  }
+}
+
+function preencherDados(dados) {
+  document.querySelector('[name=rua]').value = dados.address.road;
+  document.querySelector('[name=numero]').value = dados.address.house_number;
+  document.querySelector('[name=cidade]').value = dados.address.city;
+  document.querySelector('[name=cep]').value = dados.address.postcode;  
+}
+</script>
 
 
 

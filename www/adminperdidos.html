@@ -7,64 +7,54 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  
-  		<script type="text/javascript">
-		
-		document.addEventListener("deviceready", onDeviceReady, false);
+
+<script type="text/javascript">
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+function submit() 
+{
+    var nomedopet = document.getElementById('nomedopet').value;
+	var especie = document.getElementById('especie').value;
+	var raca = document.getElementById('raca').value;
+	var cor = document.getElementById('cor').value;
+	var nomedodono = document.getElementById('nomedodono').value;
+	var telefone = document.getElementById('telefone').value;
+	var email = document.getElementById('email').value;
+	var imagem = document.getElementById('imagem').value;
+	
+    var msg;
+    var time_stamp = new Date();
+
+    db.transaction(function (tx) 
+    {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS Perdidos (id auto_increment, date_time varchar(128), nomedopet varchar(64), especie varchar(64), raca varchar(64), cor varchar(64), nomedodono varchar(64), telefone integer, email varchar(64), imagem varbinary)');
+        tx.executeSql('INSERT INTO Perdidos (id, nomedopet, especie, raca, cor, nomedodono, telefone, email, imagem) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?)', [nomedopet,especie,raca,cor,nomedodono,telefone,email,imagem]);// <--Problem here!
+        msg = '<p>Log message created and row inserted.</p>';
+        document.querySelector('#status').innerHTML = msg;
+    });
+
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM Perdidos', [], function (tx, results) {
+                var len = results.rows.length, i;
+                msg = "<p>Found rows: " + len + "</p>";
+                document.querySelector('#status').innerHTML += msg;
+                for (i = 0; i < len; i++) {
+                    msg = "<p><b>Nome do pet:" + results.rows.item(i).nomedopet + 
+					"<p><b>Especie:" + results.rows.item(i).especie + "</b></p>"
+					"<p><b>Raça:" + results.rows.item(i).raca + "</b></p>"
+					"<p><b>Cor:" + results.rows.item(i).cor + "</b></p>"
+					"<p><b>Nome do dono:" + results.rows.item(i).nomedodono + "</b></p>"
+					"<p><b>Telefone:" + results.rows.item(i).telefone + "</b></p>"
+					"<p><b>Email:" + results.rows.item(i).email + "</b></p>"
+					"<p><b>Imagem:" + results.rows.item(i).imagem + "</b></p>";
+
+                    document.querySelector('#status').innerHTML += msg;
+                }
+            }, null);
+        });
+}
+</script>
 
 
-		function onDeviceReady() {
-			var database = window.openDatabase("Perdidos", "1.0", "BuscaPet BD", 20000);
-			database.transaction(populateDB, errorDB, successDB);
-		}
-		
-		function populateDB (tx){
-			tx.executeSql("CREATE TABLE IF NOT EXISTS Perdidos (nomedopet text, especie text, raca text, cor text, nomedodono text, telefone int, email text, descricao text)");
-		}
-		
-		function errorDB (error){
-			navigator.notification.alert(error, null, "Got an error", "OK");
-		}
-		
-		function successDB (){
-			navigator.notification.alert("Preencher os dados necessarios", null, "Cadastrar", "OK");
-		}
-		
-		function registerPerdido (){
-			var nomedopet = document.getElementById("nomedopet").value;
-			var especie = document.getElementById("especie").value;
-			var raca = document.getElementById("raca").value;
-			var cor = document.getElementById("cor").value;
-			var nomedodono = document.getElementById("nomedodono").value;
-			var telefone = document.getElementById("telefone").value;
-			var email = document.getElementById("email").value;
-			var descricao = document.getElementById("descricao").value;
-			
-			var database = window.openDatabase("Perdidos", "1.0", "BuscaPet BD", 20000);
-			database.transaction(function (tx){
-				NewPerdido(tx, nomedopet, especie, raca, cor, nomedodono, telefone, email, descricao);
-			}, errorRegistration, successRegistration);
-		}
-		
-		function NewPerdido(tx, nomedopet, especie, raca, cor, nomedodono, telefone, email, descricao){
-			var _Query = "INSERT INTO Perdidos (nomedopet, especie, raca, cor, nomedodono, telefone, email, descricao) values ('" + nomedopet + "', '" + especie + "', '" + raca + "', '" + cor + "', '" + nomedodono + "', '" + telefone + "', '" + email + "', '" + descricao + "')"
-			alert(_Query);
-			tx.executeSql(_Query);
-		}
-		
-		function errorRegistration(error){
-			navigator.notification.alert(error, null, "Got an error", "OK");
-
-		}
-		
-		function successRegistration(){
-			navigator.notification.alert("PET PERDIDO cadastrado com sucesso", null, "Informaçao", "OK");
-
-		}		
-		
-		</script>
-  
-   
   
 </head>
 
@@ -73,8 +63,8 @@
 
 <ul class="nav nav-pills">
   <li><a href="admintela.html">Home</a></li>
-  <li class="active"><a href="#">Editar</a></li>
-  <li><a href="#">Enviar</a></li>
+  <li class="active"><a href="#">Perdidos</a></li>
+  <li ><a href="adminencontrados.html">Encontrados</a></li>
 </ul>
 
 <br>
@@ -140,7 +130,14 @@
 <a class="btn btn-default" href="#" role="button">Localização</a></center>
  
 
-<input type="submit" class="btn btn-primary btn-lg btn-block" value="CADASTRAR" onclick="return registerPerdido()">
+<p><button onclick="submit()" onclick = "return showMessage()" type="button">CADASTRAR</button></p> 
+
+<script type = "text/javascript">
+function showMessage() {
+alert ("Dados enviados com sucesso!");
+return true;
+}
+</script>
 
 </div>
 </form>

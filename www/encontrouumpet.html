@@ -2,25 +2,85 @@
 <html>
 <head>
   <title>Encontrou um pet?</title>
-  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  
+      <script type="text/javascript" charset="utf-8">
+
+    var pictureSource;  
+    var destinationType; 
+
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+
+    function onPhotoDataSuccess(imageData) {
+
+      var smallImage = document.getElementById('smallImage');
+
+
+      smallImage.style.display = 'block';
+
+
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+
+    function onPhotoURISuccess(imageURI) {
+
+      var largeImage = document.getElementById('largeImage');
+
+
+      largeImage.style.display = 'block';
+
+      largeImage.src = imageURI;
+    }
+
+
+    function capturePhoto() {
+
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+
+
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
+    </script>
 </head>
+
+
 <body>
 
 <ul class="nav nav-pills">
   <li><a href="index.html">Home</a></li>
-  <li class="active"><a href="#">Editar</a></li>
-  <li><a href="#">Enviar</a></li>
+  <li><a href="perdeuseupet.html">Perdido</a></li>
+  <li class="active"><a href="#">Encontrado</a></li>
 </ul>
 
+
 <br>
+<center><button onclick="capturePhoto();" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-camera"></span> CÂMERA</button>
+
 
  <form role="form" method="post" action="http://buscapetemail.pe.hu/emailencontrados.php">
   <div class="form-group">
- 
+  
+ <br>
+
+    <img style="display:none;width:60px;height:60px;" id="smallImage" name="smallImage" src="" type="file"/>
+    <img style="display:none;" id="largeImage" src="" /> </center>
+	
+<br>
 	<label for="especie">Especie do pet:</label>
 		<select class="form-control" name="especie" id="especie">
 		<option>Cachorro</option>
@@ -44,8 +104,8 @@
   
 <br>
 
-    <label for="dono">Nome do usuário:</label>
-    <input type="text" class="form-control" id="nomedousuario">
+    <label for="nomedousuario">Nome do usuário:</label>
+    <input type="text" class="form-control" id="nomedousuario" name="nomedousuario">
 
 <br>
 
@@ -64,19 +124,68 @@
   
  <br>
  
-     <label for="imagem">Imagem do pet:</label>
-    <input type="file" id="imagem" name="imagem">
-	
-<br>
-  
+ 
 <center><img src="img/map.png" alt="Smiley face" height="50" width="70">
 <p>
-<a class="btn btn-default" href="#" role="button">Localização</a></center>
+
+<label for="imagem">Localização:</label><p>
+    
+	<button  class="btn btn-primary btn-success" onclick="preencher()" type="button"> Preencher com localização Atual</button></center>
+<br>
+    <label>Rua:</label>
+    <input type="text" class="form-control" id="rua" name="rua">
+<br>    
+	<label>Número:</label>
+    <input type="text" class="form-control" id="numero" name="numero">
+<br> 	
+	<label>Cidade:</label>
+    <input type="text" class="form-control" id="cidade" name="cidade">
+<br> 
+    <label>CEP:</label>
+    <input type="text" class="form-control" id="cep" name="cep">
+<br> 
+
  
-<button type="submit" class="btn btn-primary btn-lg btn-block">ENVIAR DADOS</button>
+<button type="submit" class="btn btn-block btn-lg btn-primary" onclick = "return showMessage()">ENVIAR DADOS  <span class="glyphicon glyphicon-send"></span></button>
+<br>
  
   </div>
 </form>
+
+<script type = "text/javascript">
+function showMessage() {
+alert ("Dados enviados com sucesso!");
+return true;
+}
+</script>
+
+
+
+<script>
+function preencher() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(posicao) {
+      var url = "http://nominatim.openstreetmap.org/reverse?lat="+posicao.coords.latitude+"&lon="+posicao.coords.longitude+"&format=json&json_callback=preencherDados";
+      
+      var script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+    });
+  } else {
+    alert('seu navegador não suporta geolocation');
+  }
+}
+
+function preencherDados(dados) {
+  document.querySelector('[name=rua]').value = dados.address.road;
+  document.querySelector('[name=numero]').value = dados.address.house_number;
+  document.querySelector('[name=cidade]').value = dados.address.city;
+  document.querySelector('[name=cep]').value = dados.address.postcode;
+  
+}
+</script>
+
+
 
 
 

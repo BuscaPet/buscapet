@@ -8,61 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   
-    		<script type="text/javascript">
-		
-		document.addEventListener("deviceready", onDeviceReady, false);
-
-
-		function onDeviceReady() {
-			var database = window.openDatabase("Encontrados", "1.0", "BuscaPet BD", 20000);
-			database.transaction(populateDB, errorDB, successDB);
-		}
-		
-		function populateDB (tx){
-			tx.executeSql("CREATE TABLE IF NOT EXISTS Encontrados (especie text, raca text, cor text, nomedodono text, telefone int, email text, descricao text)");
-		}
-		
-		function errorDB (error){
-			navigator.notification.alert(error, null, "Got an error", "OK");
-		}
-		
-		function successDB (){
-			navigator.notification.alert("Preencher os dados necessarios", null, "Cadastrar", "OK");
-		}
-		
-		function registerEncontrado (){
-			var especie = document.getElementById("especie").value;
-			var raca = document.getElementById("raca").value;
-			var cor = document.getElementById("cor").value;
-			var nomedodono = document.getElementById("nomedodono").value;
-			var telefone = document.getElementById("telefone").value;
-			var email = document.getElementById("email").value;
-			var descricao = document.getElementById("descricao").value;
-			
-			var database = window.openDatabase("Encontrados", "1.0", "BuscaPet BD", 20000);
-			database.transaction(function (tx){
-				NewEncontrado(tx, especie, raca, cor, nomedodono, telefone, email, descricao);
-			}, errorRegistration, successRegistration);
-		}
-		
-		function NewEncontrado(tx, especie, raca, cor, nomedodono, telefone, email, descricao){
-			var _Query = "INSERT INTO Encontrados (especie, raca, cor, nomedodono, telefone, email, descricao) values ('" + especie + "', '" + raca + "', '" + cor + "', '" + nomedodono + "', '" + telefone + "', '" + email + "', '" + descricao + "')"
-			alert(_Query);
-			tx.executeSql(_Query);
-		}
-		
-		function errorRegistration(error){
-			navigator.notification.alert(error, null, "Got an error", "OK");
-
-		}
-		
-		function successRegistration(){
-			navigator.notification.alert("PET ENCONTRADO cadastrado com sucesso", null, "Informaçao", "OK");
-
-		}		
-		
-		</script>
-  
   
   
   
@@ -72,8 +17,8 @@
 
 <ul class="nav nav-pills">
   <li><a href="admintela.html">Home</a></li>
-  <li class="active"><a href="#">Editar</a></li>
-  <li><a href="#">Enviar</a></li>
+  <li><a href="adminperdidos.html">Perdidos</a></li>
+  <li class="active"><a href="#">Encontrados</a></li>
 </ul>
 
 <br>
@@ -133,7 +78,14 @@
 <p>
 <a class="btn btn-default" href="#" role="button">Localização</a></center>
  
-<input type="submit" class="btn btn-primary btn-lg btn-block" value="CADASTRAR" onclick="return registerEncontrado()">
+<input type="submit" class="btn btn-primary btn-lg btn-block" value="CADASTRAR" onclick = "return showMessage()">
+
+<script type = "text/javascript">
+function showMessage() {
+alert ("Dados enviados com sucesso!");
+return true;
+}
+</script>
  
   </div>
 </form>
